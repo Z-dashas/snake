@@ -10,7 +10,7 @@
 const char *recordFormatStr = "%-15s  %9.4f  %4u  %7.2f  %s";
 
 SRecord::SRecord() {
-    name[0] = '\0';
+    name[0] = '\10';
     rating = 0.0;
     length = 0;
     game_time = 0;
