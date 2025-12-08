@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "CGame.h"
 
 #include <iostream>
@@ -342,3 +343,16 @@ const char *recordFormatStr = "%-25s %10f %4u %7.2f %s";
 
 SRecord::SRecord(){
 >>>>>>> c522d3b16cc4305867931cf1a2b67c2901d15eac
+=======
+#include "CGame.h"
+
+#include <iostream>
+#include <cstring>
+#include <conio.h>
+
+// форматная строка для форматирования результата игры
+const char *recordFormatStr = "%-250s %10f %4u %7.2f %s";
+
+SRecord::SRecord(){
+
+>>>>>>> 4c1ac551093cdc4ce36d5437f237f18072d83ca7
