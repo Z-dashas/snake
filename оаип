@@ -1,0 +1,85 @@
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+namespace FeetToMetersConverter
+{
+    public partial class MainForm : Form
+    {
+        private DataGridView dataGridView;
+        private Button generateButton;
+        private Label titleLabel;
+        private const double FEET_TO_METER = 0.3048;
+        public MainForm()
+        {
+            InitializeComponent();
+            SetupUI();
+        }
+        private void InitializeComponent()
+        {
+            this.Text = "Конвертер футов в метры";
+            this.Size = new Size(500, 400);
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+        private void SetupUI()
+        {
+            titleLabel = new Label
+            {
+                Text = "Таблица соответствия футов и метров (1-10 футов)",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                Location = new Point(50, 20),
+                Size = new Size(400, 30),
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            dataGridView = new DataGridView
+            {
+                Location = new Point(50, 70),
+                Size = new Size(400, 200),
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                ReadOnly = true,
+                AllowUserToAddRows = false,
+                RowHeadersVisible = false
+            };
+            dataGridView.Columns.Add("Feet", "Футы");
+            dataGridView.Columns.Add("Meters", "Метры");
+            generateButton = new Button
+            {
+                Text = "Сгенерировать таблицу",
+                Location = new Point(175, 290),
+                Size = new Size(150, 40),
+                Font = new Font("Arial", 10)
+            };
+            generateButton.Click += GenerateButton_Click;
+            this.Controls.Add(titleLabel);
+            this.Controls.Add(dataGridView);
+            this.Controls.Add(generateButton);
+        }
+        private void GenerateButton_Click(object sender, EventArgs e)
+        {
+            GenerateConversionTable();
+        }
+        private void GenerateConversionTable()
+        {
+            dataGridView.Rows.Clear();
+            for (int feet = 1; feet <= 10; feet++)
+            {
+                double meters = feet * FEET_TO_METER;
+                string metersFormatted = meters.ToString("F2")
+                dataGridView.Rows.Add(feet.ToString(), metersFormatted);
+            }
+            dataGridView.Columns[0].Width = 150;
+            dataGridView.Columns[1].Width = 150;
+        }
+    }
+    public class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+    }
+}
+               
